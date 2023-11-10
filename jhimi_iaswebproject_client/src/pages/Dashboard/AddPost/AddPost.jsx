@@ -20,21 +20,36 @@ const AddPost = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = async (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
+    const formData = new FormData();
+    formData.append("image", file);
 
-    reader.onloadend = () => {
-      setFormData({ ...formData, imageUrl: reader.result });
-    };
+    try {
+      const response = await fetch(
+        `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_IMGBB_API_KEY
+        }`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
-    if (file) {
-      reader.readAsDataURL(file);
+      if (response.ok) {
+        const data = await response.json();
+        setFormData({ ...formData, imageUrl: data.data.url });
+      } else {
+        console.error("Image upload failed");
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     // Handle form submission logic here
     console.log("Form submitted:", formData);
   };
@@ -42,7 +57,9 @@ const AddPost = () => {
   return (
     <div className=" mt-8">
       <h1 className="text-center text-3xl font-semibold mt-10">Add question</h1>
-      <p className="text-center text-gray-600 mb-10">admin can add different question thorough this form</p>
+      <p className="text-center text-gray-600 mb-10">
+        admin can add different question thorough this form
+      </p>
       <form onSubmit={handleSubmit}>
         <div className="md:flex gap-20 items-center">
           <div className="md:w-1/2">
@@ -100,8 +117,7 @@ const AddPost = () => {
               />
             </div>
 
-           
-            <div className="flex justify-between gap-3">
+            <div className="flex justify-between mb-4 gap-3">
               {/* subject */}
               <div className="w-full">
                 <label
@@ -141,8 +157,8 @@ const AddPost = () => {
               </div>
             </div>
 
-             {/* date */}
-             <div className="mb-4">
+            {/* date */}
+            <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="submitTime"
@@ -159,9 +175,9 @@ const AddPost = () => {
                 className="border rounded-full w-full py-2 px-3"
               />
             </div>
-
           </div>
 
+          {/* image */}
           <div className="md:w-1/2 h-full border-dashed border-2 border-gray-300 p-8 flex flex-col items-center justify-center">
             <div className="text-9xl w-full flex items-center justify-center text-gray-300 text-center">
               <AiOutlineCloudUpload />
