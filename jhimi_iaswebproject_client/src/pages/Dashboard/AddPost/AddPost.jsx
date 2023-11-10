@@ -1,66 +1,83 @@
-// FormComponent.jsx
-
-import { useState } from "react";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 import { AiOutlineCloudUpload } from "react-icons/ai";
+import { useState } from "react";
 
 const AddPost = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    questionText: "",
-    answer: "",
-    imageUrl: "",
-    url: "",
-    submitTime: "",
-    subject: "",
-    topic: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const [uploadlink, setUploadLink] = useState('')
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
+  const onSubmit = async (data) => {
+    console.log(data);
+    // create a FormData onject and append the image file
     const formData = new FormData();
-    formData.append("image", file);
-
+    formData.append("image", data.image[0]);
+    // make a post request to Imgbb api
+    const url = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_IMGBB_API_KEY
+    }`;
     try {
-      const response = await fetch(
-        `https://api.imgbb.com/1/upload?key=${
-          import.meta.env.VITE_IMGBB_API_KEY
-        }`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(url, {
+        method: "POST",
+        body: formData,
+      });
+      const result = await response.json();
 
-      if (response.ok) {
-        const data = await response.json();
-        setFormData({ ...formData, imageUrl: data.data.url });
-      } else {
-        console.error("Image upload failed");
-      }
+      // extract the image url from the response
+      const imageUrl = result?.data?.display_url;
+      const PostData = {
+        title: data.title,
+        questionText: data.questionText,
+        answer: data.answer,
+        subject: data.subject,
+        topic: data.topic,
+        subjectname: data.subject,
+        submitTime: data.submitTime,
+        img: imageUrl,
+      };
+
+      axios
+        .post("http://localhost:5000/posts", PostData)
+        .then((res) => {
+          console.log("post", res.data);
+          //   setOpenPostModal(false);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "uploaded",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        })
+        .catch((error) => {
+          console.error("Post request failed:", error);
+          // Handle error if the post request fails
+        });
+
+      console.log(PostData);
     } catch (error) {
-      console.error("Error uploading image:", error);
+      console.log(error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
     }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Handle form submission logic here
-    console.log("Form submitted:", formData);
   };
 
   return (
     <div className=" mt-8">
       <h1 className="text-center text-3xl font-semibold mt-10">Add question</h1>
       <p className="text-center text-gray-600 mb-10">
-        admin can add different question thorough this form
+        admin can add different questions through this form
       </p>
-      <form onSubmit={handleSubmit}>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="md:flex gap-20 items-center">
           <div className="md:w-1/2">
             <div className="mb-4">
@@ -75,8 +92,7 @@ const AddPost = () => {
                 type="text"
                 id="title"
                 name="title"
-                value={formData.title}
-                onChange={handleChange}
+                {...register("title")}
                 className="border rounded-full w-full py-2 px-3"
               />
             </div>
@@ -91,8 +107,7 @@ const AddPost = () => {
               <input
                 id="questionText"
                 name="questionText"
-                value={formData.questionText}
-                onChange={handleChange}
+                {...register("questionText")}
                 className="border rounded-full w-full py-2 px-3"
                 placeholder="question"
               />
@@ -111,8 +126,7 @@ const AddPost = () => {
                 type="text"
                 id="answer"
                 name="answer"
-                value={formData.answer}
-                onChange={handleChange}
+                {...register("answer")}
                 className="border rounded-full w-full py-2 px-3"
               />
             </div>
@@ -131,8 +145,7 @@ const AddPost = () => {
                   type="text"
                   id="subject"
                   name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
+                  {...register("subject")}
                   className="border rounded-full w-full py-2 px-3"
                 />
               </div>
@@ -150,8 +163,7 @@ const AddPost = () => {
                   type="text"
                   id="topic"
                   name="topic"
-                  value={formData.topic}
-                  onChange={handleChange}
+                  {...register("topic")}
                   className="border rounded-full w-full py-2 px-3"
                 />
               </div>
@@ -170,12 +182,12 @@ const AddPost = () => {
                 type="time"
                 id="submitTime"
                 name="submitTime"
-                value={formData.submitTime}
-                onChange={handleChange}
+                {...register("submitTime")}
                 className="border rounded-full w-full py-2 px-3"
               />
             </div>
           </div>
+
 
           {/* image */}
           <div className="md:w-1/2 h-full border-dashed border-2 border-gray-300 p-8 flex flex-col items-center justify-center">
@@ -186,45 +198,40 @@ const AddPost = () => {
               select from local or just Ctrl+V and image will be pasted
             </label>
 
-            <div className="relative w-1/2 text-center pt-16">
-              <label
-                htmlFor="image"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer absolute bottom-0 left-0 right-0 ml-5 mb-5"
-              >
-                Browse image
+            <div className="form-control relative w-1/2 text-center pt-16">
+              <label className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer absolute bottom-0 left-0 right-0 ml-5 mb-5">
+                Browse image 
+                <input
+                onChange={(e)=>(setUploadLink(e.target.files[0]))}
+                  type="file"
+                  placeholder="photo URL"
+                  className="input input-bordered hidden"
+                  accept="image/*"
+                  {...register("image", { required: true })}
+                />
               </label>
-
-              <input
-                type="file"
-                id="image"
-                name="image"
-                accept="image/*"
-                onChange={handleImageUpload}
-                className="hidden"
-              />
             </div>
-            {formData.imageUrl && (
-              <img
-                src={formData.imageUrl}
-                alt="Selected"
-                className="h-[100px] mb-2"
-              />
-            )}
+
+            <div className="form-control w-full">
             <input
-              id="imageUrl"
-              name="imageUrl"
-              placeholder="Paste Image URL or Ctrl+V to paste"
-              value={formData.imageUrl}
-              onChange={handleChange}
-              className="border text-black text-center rounded-full w-full py-2 px-3"
-            />
+                  placeholder="if you want to add url link"
+                  type="text"
+                  id="subject"
+                  name="urllink"
+                  {...register("urllink")}
+                  className="border rounded-full w-full py-2 px-3"
+                />
+            </div>
           </div>
+
+
+          
         </div>
 
         <div className="my-4 w-1/2 mx-auto">
           <button
             type="submit"
-            className="LinkTiems w-full  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+            className="LinkTiems w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
           >
             Submit
           </button>
@@ -235,5 +242,3 @@ const AddPost = () => {
 };
 
 export default AddPost;
-
-// export default AddPost;

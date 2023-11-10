@@ -1,27 +1,24 @@
-{
-    "data": [
-      {
-        "title": "Sample Title",
-        "questionText": "What is your question?",
-        "answer": "Sample Answer",
-        "image": "https://i.ibb.co/ThPVr8x/IMG-20231001-WA0026.jpg",
-        "imageUrl": "",
-        "url": "",
-        "submitTime": "12:00 PM",
-        "subject": "Sample Subject",
-        "topic": "Sample Topic"
-      },
-      {
-        "title": "Another Title",
-        "questionText": "Another question here?",
-        "answer": "Another Answer",
-        "image": "",
-        "imageUrl": "https://i.ibb.co/ThPVr8x/IMG-20231001-WA0026.jpg",
-        "url": "",
-        "submitTime": "3:30 PM",
-        "subject": "Another Subject",
-        "topic": "Another Topic"
-      }
-    ]
+[
+  {
+    "title": "Sample Title",
+    "questionText": "What is your question?",
+    "answer": "Sample Answer",
+    "image": "https://i.ibb.co/ThPVr8x/IMG-20231001-WA0026.jpg",
+    "imageUrl": "",
+    "url": "",
+    "submitTime": "12:00 PM",
+    "subject": "Sample Subject",
+    "topic": "Sample Topic"
+  },
+  {
+    "title": "Another Title",
+    "questionText": "Another question here?",
+    "answer": "Another Answer",
+    "image": "",
+    "imageUrl": "https://i.ibb.co/ThPVr8x/IMG-20231001-WA0026.jpg",
+    "url": "",
+    "submitTime": "3:30 PM",
+    "subject": "Another Subject",
+    "topic": "Another Topic"
   }
-  
+]

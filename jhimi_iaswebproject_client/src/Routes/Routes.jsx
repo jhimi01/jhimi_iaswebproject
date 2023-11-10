@@ -4,6 +4,7 @@ import Home from "../pages/Homepage/Home/Home";
 import Contact from "../pages/Homepage/Contact/Contact";
 import DahsboardLayout from "../pages/Dashboard/DahsboardLayout";
 import AddPost from "../pages/Dashboard/AddPost/AddPost";
+import Form from "../pages/Dashboard/AddPost/Form";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "addpost",
+        // element: <Form />,
         element: <AddPost />,
       },
     ],
