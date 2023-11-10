@@ -11,7 +11,7 @@ const Header = () => {
 
   
     return (
-      <nav style={{boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"}} className=" md:rounded-full w-10/12 mx-auto my-3 px-5 py-2 ">
+      <nav style={{boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"}} className=" rounded-xl md:rounded-full w-11/12 md:w-10/12 mx-auto my-3 px-5 py-2 ">
         <div className="container mx-auto">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
@@ -32,17 +32,11 @@ const Header = () => {
            }>
                 <p className="font-semibold py-1 px-4">conact</p>
               </NavLink>
-              <NavLink  to="/service"
+              <NavLink  to="/dashboard"
              className={({ isActive }) =>
              isActive ? "LinkTiems rounded-full" : ""
            }>
-                <p className="font-semibold py-1 px-4">service</p>
-              </NavLink>
-              <NavLink  to="/about"
-             className={({ isActive }) =>
-             isActive ? "LinkTiems rounded-full" : ""
-           }>
-                <p className="font-semibold py-1 px-4">About</p>
+                <p className="font-semibold py-1 px-4">Dashboard</p>
               </NavLink>
             </div>
             <div className="md:hidden flex items-center">
