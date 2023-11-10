@@ -5,7 +5,7 @@ const DahsboardLayout = () => {
     <div className="flex">
 
       {/* sidebar */}
-      <div className="LinkTiems w-64 h-screen">
+      <div className="LinkTiems w-64 h-screen sticky top-0">
         <div
           className="py-4 px-4 text-2xl font-bold"
           style={{ borderBottom: "1px dashed #999" }}
@@ -23,11 +23,14 @@ const DahsboardLayout = () => {
             >
               Add Question
             </NavLink>
+            <NavLink to="/dashboard/qs" className="block py-2 px-4 hover:bg-white">
+              All Questions
+            </NavLink>
             <NavLink to="/dashboard/ghraph" className="block py-2 px-4 hover:bg-white">
               Settings
             </NavLink>
           </div>
-          <div>
+          <div className="pb-20 pt-3" style={{borderTop: "1px dashed #999"}}>
             <NavLink to="/" className="block py-2 px-4 hover:bg-white">
               Home
             </NavLink>
@@ -37,7 +40,9 @@ const DahsboardLayout = () => {
           </div>
         </nav>
       </div>
+      <div className="w-9/12 mx-auto">
       <Outlet />
+      </div>
     </div>
   );
 };
