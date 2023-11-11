@@ -12,18 +12,17 @@ const AddPost = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [uploadlink, setUploadLink] = useState('')
-  const [loading, setLoading] = useState(false)
-  const navigation = useNavigate()
+  const [loading, setLoading] = useState(false);
+  const navigation = useNavigate();
 
   const convertTimestamp = (timestamp) => {
     const date = new Date(timestamp);
     return date.toLocaleString(); // Convert timestamp to a human-readable format
-}
+  };
 
   const onSubmit = async (data) => {
     console.log(data);
-    setLoading(true)
+    setLoading(true);
     // create a FormData onject and append the image file
     const formData = new FormData();
     formData.append("image", data.image[0]);
@@ -55,8 +54,8 @@ const AddPost = () => {
         .post("http://localhost:5000/posts", PostData)
         .then((res) => {
           console.log("post", res.data);
-          navigation('/dashboard/all_questions')
-          setLoading(false)
+          navigation("/dashboard/all_questions");
+          setLoading(false);
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -103,9 +102,16 @@ const AddPost = () => {
                 type="text"
                 id="title"
                 name="title"
-                {...register("title")}
-                className="border rounded-full w-full py-2 px-3"
+                {...register("title", { required: "Title is required" })}
+                className={`border rounded-full w-full py-2 px-3 ${
+                  errors.title ? "border-red-500" : ""
+                }`}
               />
+              {errors.title && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.title.message}
+                </p>
+              )}
             </div>
 
             <div className="mb-4">
@@ -118,10 +124,19 @@ const AddPost = () => {
               <input
                 id="questionText"
                 name="questionText"
-                {...register("questionText")}
-                className="border rounded-full w-full py-2 px-3"
+                {...register("questionText", {
+                  required: "Question Text is required",
+                })}
+                className={`border rounded-full w-full py-2 px-3 ${
+                  errors.questionText ? "border-red-500" : ""
+                }`}
                 placeholder="question"
               />
+              {errors.questionText && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.questionText.message}
+                </p>
+              )}
             </div>
 
             {/* answer */}
@@ -137,9 +152,16 @@ const AddPost = () => {
                 type="text"
                 id="answer"
                 name="answer"
-                {...register("answer")}
-                className="border rounded-full w-full py-2 px-3"
+                {...register("answer", { required: "Answer is required" })}
+                className={`border rounded-full w-full py-2 px-3 ${
+                  errors.answer ? "border-red-500" : ""
+                }`}
               />
+              {errors.answer && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.answer.message}
+                </p>
+              )}
             </div>
 
             <div className="flex justify-between mb-4 gap-3">
@@ -156,9 +178,16 @@ const AddPost = () => {
                   type="text"
                   id="subject"
                   name="subject"
-                  {...register("subject")}
-                  className="border rounded-full w-full py-2 px-3"
+                  {...register("subject", { required: "Subject is required" })}
+                  className={`border rounded-full w-full py-2 px-3 ${
+                    errors.subject ? "border-red-500" : ""
+                  }`}
                 />
+                {errors.subject && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.subject.message}
+                  </p>
+                )}
               </div>
 
               {/* topic */}
@@ -174,14 +203,19 @@ const AddPost = () => {
                   type="text"
                   id="topic"
                   name="topic"
-                  {...register("topic")}
-                  className="border rounded-full w-full py-2 px-3"
+                  {...register("topic", { required: "Topic is required" })}
+                  className={`border rounded-full w-full py-2 px-3 ${
+                    errors.topic ? "border-red-500" : ""
+                  }`}
                 />
+                {errors.topic && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.topic.message}
+                  </p>
+                )}
               </div>
             </div>
-
           </div>
-
 
           {/* image */}
           <div className="md:w-1/2 h-full border-dashed border-2 border-gray-300 p-8 flex flex-col items-center justify-center">
@@ -194,32 +228,33 @@ const AddPost = () => {
 
             <div className="form-control relative w-1/2 text-center pt-16">
               <label className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer absolute bottom-0 left-0 right-0 ml-5 mb-5">
-                Browse image 
+                Browse image
                 <input
-                onChange={(e)=>(setUploadLink(e.target.files[0]))}
                   type="file"
                   placeholder="photo URL"
                   className="input input-bordered hidden"
                   accept="image/*"
-                  {...register("image", { required: true })}
+                  {...register("image", { required: "Image is required" })}
                 />
               </label>
+              {errors.image && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.image.message}
+                </p>
+              )}
             </div>
 
             <div className="form-control w-full">
-            <input
-                  placeholder="if you want to add url link"
-                  type="text"
-                  id="subject"
-                  name="urllink"
-                  {...register("urllink")}
-                  className="border rounded-full w-full py-2 px-3"
-                />
+              <input
+                placeholder="if you want to add url link"
+                type="text"
+                id="urllink"
+                name="urllink"
+                {...register("urllink")}
+                className="border rounded-full w-full py-2 px-3"
+              />
             </div>
           </div>
-
-
-          
         </div>
 
         <div className="my-4 w-1/2 mx-auto">
@@ -227,7 +262,14 @@ const AddPost = () => {
             type="submit"
             className="LinkTiems w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
           >
-            {loading ? <span className="flex items-center justify-center gap-4"><FaSpinner className="text-2xl animate-spin" /> it might take a bit longer</span> : "submit"}
+            {loading ? (
+              <span className="flex items-center justify-center gap-4">
+                <FaSpinner className="text-2xl animate-spin" /> it might take a
+                bit longer
+              </span>
+            ) : (
+              "submit"
+            )}
           </button>
         </div>
       </form>
