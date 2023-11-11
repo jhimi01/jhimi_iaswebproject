@@ -1,16 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import useAllQuestions from "../../../hook/useAllQuestions";
-import QuestionPage from "../../QuestionsPage/QuestionsPage";
-
 
 const AllQuestion = () => {
   const location = useLocation();
   const { questions } = useAllQuestions();
 
-   // Check if the current location is a single card page
-   const isSingleCardPage = location.pathname.startsWith('/questions/');
-
-  
 
   // Check if the current location is "/allqsn"
   const isAllQuestionsPage = location.pathname === "/allqsn";

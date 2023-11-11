@@ -7,7 +7,7 @@
 /* Add this to your styles.css or any other styles file */
 @keyframes moveLeftToRight {
     0% {
-      transform: translateX(-5%);
+      transform: translateX(-17%);
     }
     50%{
         transform: translateX(50%);

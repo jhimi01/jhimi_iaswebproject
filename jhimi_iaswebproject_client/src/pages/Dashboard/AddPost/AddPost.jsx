@@ -257,6 +257,7 @@ const AddPost = () => {
           </div>
         </div>
 
+        {/* submit button */}
         <div className="my-4 w-1/2 mx-auto">
           <button
             type="submit"
@@ -264,8 +265,8 @@ const AddPost = () => {
           >
             {loading ? (
               <span className="flex items-center justify-center gap-4">
-                <FaSpinner className="text-2xl animate-spin" /> it might take a
-                bit longer
+                <FaSpinner className="text-3xl animate-spin" />
+                It might take a bit longer
               </span>
             ) : (
               "submit"
