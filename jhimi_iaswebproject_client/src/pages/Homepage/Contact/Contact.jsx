@@ -14,7 +14,7 @@ const Contact = () => {
         <div className="flex items-center justify-center flex-col w-1/2 mx-auto px-5">
             <input className="inputfileld" type="text" placeholder="your name" />
             <input className="inputfileld" type="email" placeholder="email" />
-            <textarea className="inputfileld" placeholder="Type message here"></textarea>
+            <textarea className="inputfileld md:h-40" placeholder="Type message here"></textarea>
             <button className='button-54'>send</button>
         </div>
       </div>

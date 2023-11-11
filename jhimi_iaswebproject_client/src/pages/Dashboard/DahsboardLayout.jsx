@@ -23,7 +23,7 @@ const DahsboardLayout = () => {
             >
               Add Question
             </NavLink>
-            <NavLink to="/dashboard/qs" className="block py-2 px-4 hover:bg-white">
+            <NavLink to="/dashboard/all_questions" className="block py-2 px-4 hover:bg-white">
               All Questions
             </NavLink>
             <NavLink to="/dashboard/ghraph" className="block py-2 px-4 hover:bg-white">

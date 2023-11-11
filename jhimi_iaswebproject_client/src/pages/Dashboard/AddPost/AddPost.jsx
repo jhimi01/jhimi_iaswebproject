@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { useState } from "react";
+import { FaSpinner } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const AddPost = () => {
   const {
@@ -11,9 +13,17 @@ const AddPost = () => {
     formState: { errors },
   } = useForm();
   const [uploadlink, setUploadLink] = useState('')
+  const [loading, setLoading] = useState(false)
+  const navigation = useNavigate()
+
+  const convertTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString(); // Convert timestamp to a human-readable format
+}
 
   const onSubmit = async (data) => {
     console.log(data);
+    setLoading(true)
     // create a FormData onject and append the image file
     const formData = new FormData();
     formData.append("image", data.image[0]);
@@ -37,7 +47,7 @@ const AddPost = () => {
         subject: data.subject,
         topic: data.topic,
         subjectname: data.subject,
-        submitTime: data.submitTime,
+        submitTime: convertTimestamp(new Date().getTime()),
         img: imageUrl,
       };
 
@@ -45,7 +55,8 @@ const AddPost = () => {
         .post("http://localhost:5000/posts", PostData)
         .then((res) => {
           console.log("post", res.data);
-          //   setOpenPostModal(false);
+          navigation('/dashboard/all_questions')
+          setLoading(false)
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -169,23 +180,6 @@ const AddPost = () => {
               </div>
             </div>
 
-            {/* date */}
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="submitTime"
-              >
-                Submit Time
-              </label>
-              <input
-                placeholder="Submit Time"
-                type="time"
-                id="submitTime"
-                name="submitTime"
-                {...register("submitTime")}
-                className="border rounded-full w-full py-2 px-3"
-              />
-            </div>
           </div>
 
 
@@ -233,7 +227,7 @@ const AddPost = () => {
             type="submit"
             className="LinkTiems w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
           >
-            Submit
+            {loading ? <span className="flex items-center justify-center gap-4"><FaSpinner className="text-2xl animate-spin" /> it might take a bit longer</span> : "submit"}
           </button>
         </div>
       </form>

@@ -26,11 +26,11 @@ const Header = () => {
            }>
                 <p className="font-semibold py-1 px-4">Home</p>
               </NavLink>
-              <NavLink  to="/contact"
+              <NavLink  to="/allqsn"
              className={({ isActive }) =>
              isActive ? "LinkTiems rounded-full" : ""
            }>
-                <p className="font-semibold py-1 px-4">conact</p>
+                <p className="font-semibold py-1 px-4">All Questions</p>
               </NavLink>
               <NavLink  to="/dashboard"
              className={({ isActive }) =>

@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+/* Add this to your styles.css or any other styles file */
+@keyframes moveLeftToRight {
+    0% {
+      transform: translateX(-5%);
+    }
+    50%{
+        transform: translateX(50%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  .infiniteAnimation {
+    animation: moveLeftToRight 15s infinite linear; /* Adjust the duration and timing function as needed */
+  }
+  
