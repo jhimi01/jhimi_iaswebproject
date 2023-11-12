@@ -11,11 +11,11 @@ const Contact = () => {
         {/* <div className="w-full h-[60vh]">
           <img src={bgcontact} alt="bg" className="w-full h-full object-cover" />
         </div> */}
-        <div className="flex items-center justify-center flex-col w-1/2 mx-auto px-5">
+        <div className="flex items-center justify-center flex-col md:w-1/2 mx-auto px-5">
             <input className="inputfileld" type="text" placeholder="your name" />
             <input className="inputfileld" type="email" placeholder="email" />
             <textarea className="inputfileld md:h-40" placeholder="Type message here"></textarea>
-            <button className='button-54'>send</button>
+            <button className='button-54 mt-3'>send</button>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import Lottie from "lottie-react";
 import animation from "../../../../public/Animation2.json";
 import "./Home.css";
 import Contact from "../Contact/Contact";
-import AllQuestion from "../AllQuestion/AllQuestion";
+import About from "../About/About";
 
 const Home = () => {
   return (
@@ -28,7 +28,7 @@ const Home = () => {
         </div>
       </div>
 
-      <AllQuestion />
+     <About />
 
       <Contact />
     </>

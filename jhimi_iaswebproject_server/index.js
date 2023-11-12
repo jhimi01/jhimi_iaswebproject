@@ -46,6 +46,14 @@ async function run() {
       res.send(result);
     });
 
+    // get a single data
+    app.delete('/qustions/:id', async(req, res) =>{
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)};
+      const result = await questionColleciton.deleteOne(query);
+      res.send(result);
+    });
+
 
     // post api link
        app.post('/posts', async(req, res) => {

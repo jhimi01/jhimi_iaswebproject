@@ -10,15 +10,16 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
+  const isUserLoggedIn = localStorage.getItem("admin-login") === "true";
+  console.log(isUserLoggedIn);
+
   const handleLogout = () => {
     // Remove both admin-login and user-login from localStorage
-    localStorage.removeItem('admin-login');
-    localStorage.removeItem('user-login');
-
-    // Add any additional logout logic if needed
+    localStorage.removeItem("admin-login");
+    localStorage.removeItem("user-login");
 
     // Redirect to the home page or login page after logout
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
@@ -50,14 +51,18 @@ const Header = () => {
             >
               <p className="font-semibold py-1 px-4">All Questions</p>
             </NavLink>
-            <NavLink
-              to="/dashboard"
-              className={({ isActive }) =>
-                isActive ? "LinkTiems rounded-full" : ""
-              }
-            >
-              <p className="font-semibold py-1 px-4">Dashboard</p>
-            </NavLink>
+
+            {isUserLoggedIn && (
+              <NavLink
+                to="/dashboard"
+                className={({ isActive }) =>
+                  isActive ? "LinkTiems rounded-full" : ""
+                }
+              >
+                <p className="font-semibold py-1 px-4">Dashboard</p>
+              </NavLink>
+            )}
+
             <button onClick={handleLogout}>
               <p className="font-semibold py-1 px-4">LogOut</p>
             </button>
