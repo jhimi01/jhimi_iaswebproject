@@ -4,7 +4,7 @@ const useAllQuestions = () => {
     const { isLoading, data : questions = [], refetch } = useQuery({
         queryKey: ['questions'],
         queryFn: async () => {
-            const response = await fetch('http://localhost:5000/qustions')
+            const response = await fetch('https://jhimi-iaswebproject-server.vercel.app/qustions')
             if (!response.ok) {
               throw new Error('Network response was not ok')
             }

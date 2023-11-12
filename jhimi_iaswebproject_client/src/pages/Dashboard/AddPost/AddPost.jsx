@@ -51,7 +51,7 @@ const AddPost = () => {
       };
 
       axios
-        .post("http://localhost:5000/posts", PostData)
+        .post("https://jhimi-iaswebproject-server.vercel.app/posts", PostData)
         .then((res) => {
           console.log("post", res.data);
           navigation("/dashboard/all_questions");
@@ -227,12 +227,12 @@ const AddPost = () => {
             </label>
 
             <div className="form-control relative w-1/2 text-center pt-16">
-              <label className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer absolute bottom-0 left-0 right-0 ml-5 mb-5">
-                Browse image
+              <label className=" font-bold py-2 rounded cursor-pointer absolute bottom-0 left-0 right-0 mb-5">
+                
                 <input
                   type="file"
                   placeholder="photo URL"
-                  className="input input-bordered hidden"
+                  className="input input-bordered "
                   accept="image/*"
                   {...register("image", { required: "Image is required" })}
                 />

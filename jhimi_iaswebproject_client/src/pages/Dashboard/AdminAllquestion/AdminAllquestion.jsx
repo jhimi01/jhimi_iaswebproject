@@ -21,7 +21,7 @@ const AdminAllquestion = () => {
       }).then((result) => {
         if (result.isConfirmed) {
           // Make an Axios DELETE request to the server endpoint
-          axios.delete(`http://localhost:5000/qustions/${id}`);
+          axios.delete(`https://jhimi-iaswebproject-server.vercel.app/qustions/${id}`);
 
           // After successful deletion, refetch the updated data
         

@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       {
         path :"/questions/:id",
         element : <QuestionsPage />,
-        loader: ({params})=> fetch(`http://localhost:5000/qustions/${params.id}`)
+        loader: ({params})=> fetch(`https://jhimi-iaswebproject-server.vercel.app/qustions/${params.id}`)
       },
       // {
       //   path: "/login",
