@@ -7,6 +7,8 @@ import QuestionsPage from "../pages/QuestionsPage/QuestionsPage";
 import AdminAllquestion from "../pages/Dashboard/AdminAllquestion/AdminAllquestion";
 import AllQuestion from "../pages/Homepage/AllQuestion/AllQuestion";
 import Loginpage from "../pages/Loginpage/Loginpage";
+import GhrapgDashboard from "../pages/Dashboard/Ghrapg-dashboard/GhrapgDashboard";
+import Dashboard from "../pages/Dashboard/Dashboard.jsx/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <DahsboardLayout />,
     children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "/dashboard/ghraph",
+        element: <GhrapgDashboard />,
+      },
       {
         path: "addpost",
         element: <AddPost />,

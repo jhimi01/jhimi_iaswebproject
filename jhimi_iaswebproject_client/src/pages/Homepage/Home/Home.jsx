@@ -21,7 +21,7 @@ const Home = () => {
             nobis, corrupti eius nisi deserunt adipisci qui explicabo quasi
             saepe.
           </p>
-          <button className="button-54 font-mono">start quiz</button>
+          <button className="button-54 font-mono">start learning</button>
         </div>
         <div className="md:w-1/2">
           <Lottie animationData={animation} />

@@ -26,9 +26,6 @@ const DahsboardLayout = () => {
             <NavLink to="/dashboard/all_questions" className="block py-2 px-4 hover:bg-white">
               All Questions
             </NavLink>
-            <NavLink to="/dashboard/ghraph" className="block py-2 px-4 hover:bg-white">
-              Settings
-            </NavLink>
           </div>
           <div className="pb-20 pt-3" style={{borderTop: "1px dashed #999"}}>
             <NavLink to="/" className="block py-2 px-4 hover:bg-white">

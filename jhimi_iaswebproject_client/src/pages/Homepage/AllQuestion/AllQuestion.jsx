@@ -1,10 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import useAllQuestions from "../../../hook/useAllQuestions";
+import { useEffect } from "react";
 
 const AllQuestion = () => {
   const location = useLocation();
   const { questions } = useAllQuestions();
 
+  useEffect(()=>{
+    window.scroll(0, 0 )
+  },[])
 
   // Check if the current location is "/allqsn"
   const isAllQuestionsPage = location.pathname === "/allqsn";
