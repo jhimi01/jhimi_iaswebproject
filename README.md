@@ -2,14 +2,14 @@
 
 - **Live Link:** [https://jhimiiaswebprojectclient.web.app](https://jhimiiaswebprojectclient.web.app)
 
-## Overview
+## Usage
 
-This project was developed using React.js for the front end, Tailwind CSS for styling, and Node.js with Express.js for the backend. MongoDB was utilized as the database.
+- Regular users: Limited dashboard access.
+- Admin users: Full dashboard access with the ability to view, add, and delete questions.
 
-## Features
-
-- Regular users have restricted access to the dashboard.
-- Admin users can access the dashboard to view and delete questions.
+- **Admin email & pass:**
+  - admin@gmail.com
+  - admin
 
 ## Technologies Used
 
@@ -24,7 +24,3 @@ This project was developed using React.js for the front end, Tailwind CSS for st
 - **Database:**
   - MongoDB
 
-## Usage
-
-- Regular users: Limited dashboard access.
-- Admin users: Full dashboard access with the ability to view and delete questions.
