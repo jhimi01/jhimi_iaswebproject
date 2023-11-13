@@ -3,10 +3,15 @@ import animation from "../../../../public/Animation2.json";
 import "./Home.css";
 import Contact from "../Contact/Contact";
 import About from "../About/About";
+import { Helmet } from "react-helmet";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
   return (
     <>
+      <Helmet>
+        <title>IAS Web</title>
+      </Helmet>
       <div
         style={{
           backgroundColor: "#FBAB7E",
@@ -17,18 +22,21 @@ const Home = () => {
         <div className="md:w-1/2 px-10 md:py-0 py-5 md:text-start text-center space-y-4">
           <h1 className="text-5xl font-mono font-semibold">{`Let's learn Together`}</h1>
           <p className="text-gray-500 font-thin">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ullam
-            nobis, corrupti eius nisi deserunt adipisci qui explicabo quasi
-            saepe.
+            Welcome to IAS Web, your gateway to a world of knowledge and
+            learning. At IAS Web, we believe in the power of education to
+            transform lives. Our mission is to provide a platform where
+            individuals can come together to learn, explore, and grow.
           </p>
-          <button className="button-54 font-mono">start learning</button>
+          <NavLink to="/allqsn">
+            <button className="button-54 font-mono mt-4">start learning</button>
+          </NavLink>
         </div>
         <div className="md:w-1/2">
           <Lottie animationData={animation} />
         </div>
       </div>
 
-     <About />
+      <About />
 
       <Contact />
     </>

@@ -24,9 +24,12 @@ const router = createBrowserRouter([
         element: <AllQuestion />,
       },
       {
-        path :"/questions/:id",
-        element : <QuestionsPage />,
-        loader: ({params})=> fetch(`https://jhimi-iaswebproject-server.vercel.app/qustions/${params.id}`)
+        path: "/questions/:id",
+        element: <QuestionsPage />,
+        loader: ({ params }) =>
+          fetch(
+            `https://jhimi-iaswebproject-server.vercel.app/qustions/${params.id}`
+          ),
       },
       // {
       //   path: "/login",
@@ -35,8 +38,8 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/login',
-    element: <Loginpage />
+    path: "/login",
+    element: <Loginpage />,
   },
   {
     path: "/dashboard",
@@ -55,9 +58,9 @@ const router = createBrowserRouter([
         element: <AddPost />,
       },
       {
-        path: 'all_questions',
-        element: <AdminAllquestion />
-      }
+        path: "all_questions",
+        element: <AdminAllquestion />,
+      },
     ],
   },
 ]);

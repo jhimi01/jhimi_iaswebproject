@@ -3,6 +3,7 @@ import { FaRegEdit } from "react-icons/fa";
 import useAllQuestions from "../../../hook/useAllQuestions";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const AdminAllquestion = () => {
   const { questions, refetch } = useAllQuestions();
@@ -20,11 +21,10 @@ const AdminAllquestion = () => {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          // Make an Axios DELETE request to the server endpoint
-          axios.delete(`https://jhimi-iaswebproject-server.vercel.app/qustions/${id}`);
+          axios.delete(
+            `https://jhimi-iaswebproject-server.vercel.app/qustions/${id}`
+          );
 
-          // After successful deletion, refetch the updated data
-        
           Swal.fire({
             title: "Deleted!",
             text: "Your file has been deleted.",
@@ -40,6 +40,9 @@ const AdminAllquestion = () => {
 
   return (
     <section className="text-gray-600 body-font">
+      <Helmet>
+        <title>Admin Questions | IAS Web</title>
+      </Helmet>
       <div className="container px-5 mt-10 mx-auto">
         <div className="flex flex-col text-center w-full mb-10">
           <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">

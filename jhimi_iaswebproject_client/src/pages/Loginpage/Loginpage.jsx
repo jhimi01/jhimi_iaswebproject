@@ -3,6 +3,7 @@ import Lottie from "lottie-react";
 import paperplane from "../../../public/plane.json";
 import { useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { Helmet } from "react-helmet";
 
 const Loginpage = () => {
   const [email, setEmail] = useState("");
@@ -48,7 +49,6 @@ const Loginpage = () => {
   const handleUserLogin = () => {
     // Check if admin-login is present in localStorage
     if (localStorage.getItem("admin-login") === "true") {
-      
       localStorage.removeItem("admin-login");
     } else {
       console.log("Normal user login logic goes here");
@@ -65,11 +65,16 @@ const Loginpage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
+      <Helmet>
+        <title>Login | IAS Web</title>
+      </Helmet>
       <div className="max-w-md border w-full p-6 space-y-6 bg-white rounded-md">
         <div className="w-full h-[4px] LinkTiems"></div>
         <div className="text-center">
           <h2 className="text-2xl font-semibold">Login to entry</h2>
-          <small className=" text-gray-400 font-thin">{"for admin only (email: admin@gmail.com, pass: admin)"}</small>
+          <small className=" text-gray-400 font-thin">
+            {"for admin only (email: admin@gmail.com, pass: admin)"}
+          </small>
         </div>
         <form className="space-y-4">
           <div>

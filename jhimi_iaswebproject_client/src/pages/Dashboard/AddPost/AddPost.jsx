@@ -5,6 +5,7 @@ import { AiOutlineCloudUpload } from "react-icons/ai";
 import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const AddPost = () => {
   const {
@@ -82,6 +83,9 @@ const AddPost = () => {
 
   return (
     <div className=" mt-8">
+      <Helmet>
+        <title>Add Question | IAS Web</title>
+      </Helmet>
       <h1 className="text-center text-3xl font-semibold mt-10">Add question</h1>
       <p className="text-center text-gray-600 mb-10">
         admin can add different questions through this form
@@ -228,7 +232,6 @@ const AddPost = () => {
 
             <div className="form-control relative w-1/2 text-center pt-16">
               <label className=" font-bold py-2 rounded cursor-pointer absolute bottom-0 left-0 right-0 mb-5">
-                
                 <input
                   type="file"
                   placeholder="photo URL"

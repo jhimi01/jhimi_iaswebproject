@@ -29,7 +29,6 @@ async function run() {
       .db("allquestions")
       .collection("questions");
 
-
     //   get api link
     app.get("/qustions", async (req, res) => {
       const cursor = questionColleciton.find();
@@ -37,30 +36,28 @@ async function run() {
       res.send(result);
     });
 
-
     // get a single data
-    app.get('/qustions/:id', async(req, res) =>{
+    app.get("/qustions/:id", async (req, res) => {
       const id = req.params.id;
-      const query = {_id: new ObjectId(id)};
+      const query = { _id: new ObjectId(id) };
       const result = await questionColleciton.findOne(query);
       res.send(result);
     });
 
     // get a single data
-    app.delete('/qustions/:id', async(req, res) =>{
+    app.delete("/qustions/:id", async (req, res) => {
       const id = req.params.id;
-      const query = {_id: new ObjectId(id)};
+      const query = { _id: new ObjectId(id) };
       const result = await questionColleciton.deleteOne(query);
       res.send(result);
     });
 
-
     // post api link
-       app.post('/posts', async(req, res) => {
-        const body = req.body;
-        const result = await questionColleciton.insertOne(body)
-        res.send(result)
-      })
+    app.post("/posts", async (req, res) => {
+      const body = req.body;
+      const result = await questionColleciton.insertOne(body);
+      res.send(result);
+    });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

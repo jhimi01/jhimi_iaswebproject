@@ -10,32 +10,11 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
-  const isUserLoggedIn = localStorage.getItem("admin-login") === "true";
-  console.log(isUserLoggedIn);
 
-  const handleLogout = () => {
-    // Remove both admin-login and user-login from localStorage
-    localStorage.removeItem("admin-login");
-    localStorage.removeItem("user-login");
-
-    // Redirect to the home page or login page after logout
-    navigate("/login");
-  };
-
-  return (
-    <nav
-      style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
-      className=" rounded-xl md:rounded-full w-11/12 md:w-10/12 mx-auto my-3 px-5 py-2 "
-    >
-      <div className="container mx-auto">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center">
-            <Link to="/" className="text-black text-xl font-bold">
-              Truly IAS
-            </Link>
-          </div>
-          <div className="hidden md:flex items-center space-x-4">
-            <NavLink
+  const Navigation = ()=>{
+    return(
+      <>
+        <NavLink
               to="/"
               className={({ isActive }) =>
                 isActive ? "LinkTiems rounded-full" : ""
@@ -66,6 +45,36 @@ const Header = () => {
             <button onClick={handleLogout}>
               <p className="font-semibold py-1 px-4">LogOut</p>
             </button>
+      </>
+    )
+  }
+
+  const isUserLoggedIn = localStorage.getItem("admin-login") === "true";
+  console.log(isUserLoggedIn);
+
+  const handleLogout = () => {
+    // Remove both admin-login and user-login from localStorage
+    localStorage.removeItem("admin-login");
+    localStorage.removeItem("user-login");
+
+    // Redirect to the home page or login page after logout
+    navigate("/login");
+  };
+
+  return (
+    <nav
+      style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
+      className=" rounded-xl md:rounded-full w-11/12 md:w-10/12 mx-auto my-3 px-5 py-2 "
+    >
+      <div className="container mx-auto">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center">
+            <Link to="/" className="text-black text-xl font-bold">
+              Truly IAS
+            </Link>
+          </div>
+          <div className="hidden md:flex items-center space-x-4">
+          <Navigation />
           </div>
           <div className="md:hidden flex items-center">
             <button
@@ -101,18 +110,7 @@ const Header = () => {
         {isOpen && (
           <div className="md:hidden mt-4">
             <div className="flex flex-col space-y-4">
-              <Link to="#" className="text-white hover:text-gray-300">
-                Home
-              </Link>
-              <Link to="#" className="text-white hover:text-gray-300">
-                About
-              </Link>
-              <Link to="#" className="text-white hover:text-gray-300">
-                Services
-              </Link>
-              <Link to="#" className="text-white hover:text-gray-300">
-                Contact
-              </Link>
+            <Navigation />
             </div>
           </div>
         )}

@@ -25,9 +25,7 @@ const About = () => {
             insights.
           </p>
 
-          <button className="button-54">
-            Subscribe
-          </button>
+          <button className="button-54">Subscribe</button>
         </div>
       </div>
     </section>
