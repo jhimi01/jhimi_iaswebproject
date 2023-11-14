@@ -23,14 +23,22 @@ const AdminAllquestion = () => {
         if (result.isConfirmed) {
           axios.delete(
             `https://jhimi-iaswebproject-server.vercel.app/qustions/${id}`
-          );
-
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success",
+          )
+          .then((res) => {
+            console.log("deletd", res);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          })
+          .catch((error) => {
+            console.error("Post request failed:", error);
+            // Handle error if the post request fails
           });
-          refetch();
+
+         
         }
       });
     } catch (error) {
