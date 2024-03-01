@@ -17,7 +17,7 @@ const About = () => {
             Welcome to our platform, where learning meets innovation. We believe
             in the power of education to transform lives and shape the future.
             Our mission is to provide accessible and engaging learning
-            experiences for everyone, anywhere.
+            experiences for everyone, anywhere...... experiences for everyone, anywhere......
           </p>
 
           <p className="text-sm mb-5 text-gray-500 w-full">
